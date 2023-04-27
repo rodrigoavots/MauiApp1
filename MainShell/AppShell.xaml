@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="MauiApp1.MainShell.AppShell"
+       xmlns:local="clr-namespace:MauiApp1.MainShell"
+       
+       xmlns:pages="clr-namespace:MauiApp1"
+       
+       Title="AppShell">
+    
+    <!--Parte de cima-->
+    <Shell.FlyoutHeader>
+        <local:FlyoutHeader/>
+    </Shell.FlyoutHeader>
+
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="35,*" Padding="5">
+                <Image Source="dotnet_bot.png">
+                </Image>
+                <Label Grid.Column="1" Text="Title" Padding="10"
+                       VerticalTextAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+
+    <ShellItem Route="home" Title="Home">
+        <ShellSection Route="machines" Title="Machines">
+            <ShellContent ContentTemplate="{DataTemplate pages:MainPage}" />
+        </ShellSection>
+        <ShellSection Route="inspections" Title="Inspections">
+            <ShellContent ContentTemplate="{DataTemplate pages:InspectionPage}" />
+        </ShellSection>
+    </ShellItem>
+
+
+    <!--<TabBar>
+        <ShellContent Route="login" ContentTemplate="{DataTemplate login:LoginPage}" />
+    </TabBar>
+    <TabBar>
+        <ShellContent Route="welcome" ContentTemplate="{DataTemplate welcome:WelcomePage}" />
+    </TabBar>-->
+
+
+    <!-- Quando o Flyout estiver visível, este será um item de menu ao qual poderá associar um comportamento de clique -->
+    <MenuItem IconImageSource="settings" 
+              Command="{Binding EnviromentsCommand}" 
+              Text="Settings" />
+    <MenuItem IconImageSource="exit_to_app"
+              Text="Logout" 
+              /> <!--Clicked="OnMenuItemClicked"-->
+
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20">
+            <Label Text="{Binding VersionAPP}"
+               HorizontalOptions="Center"/>
+        </StackLayout>
+    </Shell.FlyoutFooter>
+</Shell>
